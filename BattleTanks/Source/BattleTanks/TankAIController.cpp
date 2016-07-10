@@ -20,7 +20,17 @@ void ATankAIController::BeginPlay(){
     }
     //UE_LOG(LogTemp, Warning, TEXT("AIController begin play"));
 }
-
+void ATankAIController::Tick(float DeltaTime){
+    
+    Super::Tick(DeltaTime);
+    if(GetPlayerTank()){
+        //move towards the player
+        //aim towards the player
+        GetControlledTank()->AimAt(GetPlayerTank()->GetActorLocation());
+        //
+    }
+    
+}
 
 ATank* ATankAIController::GetControlledTank() const{
     {
