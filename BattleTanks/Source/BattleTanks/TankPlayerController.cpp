@@ -83,7 +83,7 @@ bool ATankPlayerController::GetLookVectorHitLocation(FVector LookDirection, FVec
     return false; // Line trace didn't succeed
 }
 
-bool ATankPlayerController::GetLookDirection(FVector2D ScreenLocation, FVector LookDirection) const{
+bool ATankPlayerController::GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const{
     FVector CameraWorldLocation; // To be discarded
     return  DeprojectScreenPositionToWorld(
                                            ScreenLocation.X,
