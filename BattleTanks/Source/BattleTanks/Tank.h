@@ -9,7 +9,9 @@
 //Forward Declarations
 class UTankBarrel;
 class UTankAimingComponent;
+class UTankMovementComponent;
 class AProjectile;
+
 
 UCLASS()
 class BATTLETANKS_API ATank : public APawn
@@ -32,6 +34,10 @@ public:
     void Fire();
     
 protected:
+    UPROPERTY(BlueprintReadOnly)
+    UTankMovementComponent* TankMovementComponent = nullptr;
+    
+    
     UTankAimingComponent* TankAimingComponent = nullptr;
     
 private:
