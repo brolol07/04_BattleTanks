@@ -5,10 +5,14 @@
 #include "GameFramework/NavMovementComponent.h"
 #include "TankMovementComponent.generated.h"
 
+
+//Forward Declarations
+class UTankTracks;
+
 /**
- * 
+ * Initialize of the tank movements
  */
-UCLASS()
+UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class BATTLETANKS_API UTankMovementComponent : public UNavMovementComponent
 {
 	GENERATED_BODY()
@@ -16,8 +20,15 @@ class BATTLETANKS_API UTankMovementComponent : public UNavMovementComponent
 	
 public:
     
+    
+    UFUNCTION(BlueprintCallable, Category = Setup)
+    void Initialize(UTankTracks* LeftTrackToSet, UTankTracks* RightTrackToSet);
+    
     UFUNCTION(BlueprintCallable, Category = Input)
     void IntendMoveForward(float Throw);
     
-	
+private:
+    UTankTracks* LeftTrack = nullptr;
+    UTankTracks* RightTrack = nullptr;
+    
 };
