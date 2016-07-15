@@ -16,7 +16,7 @@ class BATTLETANKS_API UTankTracks : public UStaticMeshComponent
 	
 public:
     
-    UFUNCTION(BlueprintCallable, Category = Input)
+    UFUNCTION(BlueprintCallable, Category = "Input")
     void SetThrottle(float Throttle);
 
     

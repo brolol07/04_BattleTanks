@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+//Copyright Brolol Games
 
 #include "BattleTanks.h"
 #include "TankBarrel.h"
@@ -17,19 +17,14 @@ UTankAimingComponent::UTankAimingComponent()
 	// ...
 }
 
-void UTankAimingComponent::SetBarrelReference(UTankBarrel* BarrelToSet){
-    
-    if(!BarrelToSet){return ; }
-    
-    Barrel = BarrelToSet;
-}
 
-void UTankAimingComponent::SetTurretReference(UTankTurret* TurretToSet){
-    
-    if(!TurretToSet){return ; }
-    
+void UTankAimingComponent::Initialize(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet){
+ 
+    Barrel = BarrelToSet;
     Turret = TurretToSet;
 }
+
+
 void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed){
     if(!Barrel) {return;}
     
@@ -55,6 +50,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed){
 
 void UTankAimingComponent::MoveBarrelTowards(FVector AimDirecton){
     
+    if(!Barrel || !Turret){return ; }
     //Work out the difference between barrel and aim direction
     auto BarrelRotator = Barrel->GetForwardVector().Rotation();
     auto AimAsRotator =  AimDirecton.Rotation();
