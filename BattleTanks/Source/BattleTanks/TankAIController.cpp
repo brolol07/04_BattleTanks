@@ -3,7 +3,7 @@
 #include "BattleTanks.h"
 #include "Tank.h"
 #include "TankAIController.h"
-
+//depends on movement component for AI pathfinding system
 
 
 
