@@ -1,8 +1,6 @@
 // Copyright Brolol Games
 
 #include "BattleTanks.h"
-#include "TankBarrel.h"
-#include "Projectile.h"
 #include "Tank.h"
 
 
@@ -13,31 +11,4 @@ ATank::ATank()
 	PrimaryActorTick.bCanEverTick = false;
 }
 
-// Called when the game starts or when spawned
-void ATank::BeginPlay()
-{
-	Super::BeginPlay();
-}
 
-
-void ATank::Fire(){
-    
-    if((!Barrel)){ return ; }
-    bool IsReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTimeInSeconds;
-    
-
-    if(IsReloaded){
-    
-    //spawn a projectile at the socket
-        
-    
-   auto Projectile = GetWorld()->SpawnActor<AProjectile>(
-                                        ProjectileBlueprint,
-                                        Barrel->GetSocketLocation(FName("Projectile")),
-                                        Barrel->GetSocketRotation(FName("Projectile"))
-                                        );
-        
-    Projectile->LaunchProjectile(LaunchSpeed);
-        LastFireTime = FPlatformTime::Seconds();
-    }
-}
