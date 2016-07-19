@@ -51,6 +51,7 @@ private:
     
     void MoveBarrelTowards(FVector AimDirection);
     
+    bool IsBarrelMoving();
     
     UTankBarrel* Barrel = nullptr;
     
@@ -67,6 +68,8 @@ private:
     UPROPERTY(EditDefaultsOnly, Category = "Firing")
     float ReloadTimeInSeconds = 3.f;
 
+    FVector AimDirection;
+    
     double LastFireTime = 0;
 
 };
