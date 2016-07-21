@@ -26,14 +26,18 @@ public:
     float TrackMaxDrivingForce =45000000.f;
     
 private:
-    UTankTracks();
-    virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
     
+    UTankTracks();
     
     virtual void BeginPlay() override;
 
+    
+    void DriveTrack();
+    void ApplySidewaysForce();
 
     UFUNCTION()
     void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
+
+    float CurrentThrottle = 0;
 
 };
