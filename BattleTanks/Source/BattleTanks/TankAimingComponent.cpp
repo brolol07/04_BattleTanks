@@ -75,9 +75,8 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirecton){
     if(!ensure(Barrel) || !ensure(Turret)){ return ; }
   //  UE_LOG(LogTemp, Warning, TEXT("I'm here"))
     //Work out the difference between barrel and aim direction
-    auto BarrelRotator = Barrel->GetForwardVector().Rotation();
-    auto AimAsRotator =  AimDirecton.Rotation();
-    auto DeltaRotator = AimAsRotator - BarrelRotator;
+    auto RotationWithoutRoll = FQuat::FindBetween(Barrel->GetForwardVector(), AimDirecton);
+    auto DeltaRotator = RotationWithoutRoll.Rotator();
     
     Barrel->Elevate(DeltaRotator.Pitch);
     Turret->Rotate(DeltaRotator.Yaw);
