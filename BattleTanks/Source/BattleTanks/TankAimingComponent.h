@@ -10,7 +10,7 @@ UENUM()
 
 enum class EFiringStatus : uint8
 {
-    Firing, Reloading, Locked
+    Firing, Reloading, Locked, OutOfAmmo
 };
 
 //Foward Declaration
