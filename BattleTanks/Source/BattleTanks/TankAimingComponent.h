@@ -34,6 +34,9 @@ public:
     void Fire();
     
     EFiringStatus GetFiringStatus();
+    
+    UFUNCTION(BlueprintCallable, Category = "Firing")
+    int32 GetRoundsLeft() const ;
 
 protected:
     
@@ -60,7 +63,7 @@ private:
     
     
     UPROPERTY(EditDefaultsOnly, Category = "Firing")
-    float LaunchSpeed = 40000.f;
+    float LaunchSpeed = 40000.f; 
     
     UPROPERTY(EditDefaultsOnly, Category = "Setup")
     TSubclassOf<AProjectile> ProjectileBlueprint;
@@ -73,4 +76,5 @@ private:
     
     double LastFireTime = 0;
 
+    int32 RoundsLeft = 3;
 };
