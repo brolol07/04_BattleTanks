@@ -24,7 +24,7 @@ void ATankAIController::Tick(float DeltaTime){
     if(!ensure(PlayerTank && ControlledTank)){return ; }
         
         //move towards player
-        MoveToActor(PlayerTank, AcceptanceRadius);
+        MoveToActor(PlayerTank, 1000.f);
         //aim towards the player
     auto AimingComponent = ControlledTank->FindComponentByClass<UTankAimingComponent>();
         AimingComponent->AimAt(PlayerTank->GetActorLocation());
