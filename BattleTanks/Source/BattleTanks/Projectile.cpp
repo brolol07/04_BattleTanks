@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright 2016 Brolol Games
 
 #include "BattleTanks.h"
 #include "Projectile.h"
@@ -15,9 +15,12 @@ AProjectile::AProjectile()
     CollisionMesh->SetNotifyRigidBodyCollision(true);
     CollisionMesh->SetVisibility(false);
     
-    LaunchBlast = CreateDefaultSubobject<UParticleSystemComponent>(FName("Launcgh Blast"));
-    LaunchBlast->AttachTo(RootComponent);
+    LaunchBlast = CreateDefaultSubobject<UParticleSystemComponent>(FName("Launch Blast"));
+    LaunchBlast->AttachTo(RootComponent);//TODO updatte to mre API
     
+    
+    ImpactBlast = CreateDefaultSubobject<UParticleSystemComponent>(FName("Impact Blast"));
+    ImpactBlast->AttachTo(RootComponent);//TODO update to new API
     
     ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(FName("Projectile Movement"));
     ProjectileMovement->bAutoActivate = false;
@@ -28,13 +31,6 @@ void AProjectile::BeginPlay()
 {
 	Super::BeginPlay();
 	
-}
-
-// Called every frame
-void AProjectile::Tick( float DeltaTime )
-{
-	Super::Tick( DeltaTime );
-
 }
 
 void AProjectile::LaunchProjectile(float Speed){
