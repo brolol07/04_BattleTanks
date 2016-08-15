@@ -1,7 +1,8 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright Brolol Games
 
 #include "BattleTanks.h"
 #include "TankAimingComponent.h"
+#include "Tank.h"
 #include "TankPlayerController.h"
 
 
@@ -13,6 +14,20 @@ void ATankPlayerController::BeginPlay()
     {
     FoundAimingComponent(AimingComponent);
     }
+}
+
+void ATankPlayerController::SetPawn(APawn* InPawn) {
+    Super::SetPawn(InPawn);
+    if(InPawn){
+        auto PossesedTank = Cast<ATank>(InPawn);
+        
+        if(!ensure(PossesedTank) ) {return;}
+        PossesedTank->OnDeath.AddUniqueDynamic(this, &ATankPlayerController::OnPossedTankDeath);
+    }
+}
+
+void ATankPlayerController::OnPossedTankDeath(){
+    StartSpectatingOnly();
 }
 
 void ATankPlayerController::Tick(float DeltaTime)
@@ -86,4 +101,8 @@ bool ATankPlayerController::GetLookDirection(FVector2D ScreenLocation, FVector& 
                                            CameraWorldLocation,
                                            LookDirection
                                            );
+}
+
+void ATankPlayerController::StartSpectatingOnly(){
+    
 }
